@@ -7,6 +7,10 @@ function setup() {
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+
+  let moviesContainer = document.createElement("div");
+  moviesContainer.classList.add("movies-container");
+  rootElem.appendChild(moviesContainer);
   
   for (episode in episodeList) {
     
@@ -16,7 +20,7 @@ function makePageForEpisodes(episodeList) {
     
     let topContainer = document.createElement("div");
     topContainer.classList.add("top-container");
-    rootElem.appendChild(topContainer);
+    moviesContainer.appendChild(topContainer);
     
     // This is my movie card
     let movieCard = document.createElement("div");
@@ -40,9 +44,9 @@ function makePageForEpisodes(episodeList) {
     movieCard.appendChild(summaryP);
     summaryP.innerText = episodeList[episode].summary;
 
-
+   
   }
-  console.log(episodeList);
+  // console.log(episodeList);
   
  
 
