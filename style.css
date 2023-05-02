@@ -3,10 +3,16 @@
 }
 .movie-card {
   background-color: burlywood;
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
 }
 .movies-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
-
+p {
+  display:flex;
+  justify-content: center;
+}
