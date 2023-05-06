@@ -2,7 +2,7 @@
   color: red;
 }
 .movie-card {
-  background-color: burlywood;
+  background-color: #E0DFD5;
   display: flex;
   flex-direction:column;
   justify-content:center;
@@ -15,4 +15,24 @@
 p {
   display:flex;
   justify-content: center;
+  text-align: center;
+  
+}
+.movie-card {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.episode-name {
+  font-size: 1.5rem;
+  color: #424b54;
+  
+}
+
+.summary-p {
+  color: black;
+}
+
+body {
+  background-color: #313638;
 }
