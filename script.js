@@ -1,11 +1,13 @@
 //You can edit ALL of the code here
 function setup() {
   const allEpisodes = getAllEpisodes();
+  console.log(allEpisodes);
   makePageForEpisodes(allEpisodes);
 }
 
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
+
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
   let moviesContainer = document.createElement("div");
@@ -28,7 +30,26 @@ function makePageForEpisodes(episodeList) {
     let episodeName = document.createElement("p");
     episodeName.classList.add("episode-name");
     movieCard.appendChild(episodeName);
-    episodeName.innerText = episodeList[episode].name;
+
+    // Storing the episode name, series and episode number into variables
+    let titleName = episodeList[episode].name;
+
+    // Putting a zero for seasons and episodes that are less than 10
+    let seasonNumber;
+    if (episodeList[episode].season < 10) {
+      seasonNumber = `S0${episodeList[episode].season}`;
+    } else {
+      seasonNumber = `S${episodeList[episode].season}`;
+    }
+
+    let episodeNumber;
+    if (episodeList[episode].number < 10) {
+      episodeNumber = `E0${episodeList[episode].number}`;
+    } else {
+      episodeNumber = `E${episodeList[episode].number}`;
+    }
+    episodeName.innerText =
+      titleName + " " + seasonNumber + " " + episodeNumber;
 
     // This inserts a picture of the movie to the movie card
     let movieImage = document.createElement("img");
