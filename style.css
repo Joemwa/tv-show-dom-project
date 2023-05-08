@@ -62,4 +62,6 @@ body {
   color: #424b54;
   
 }
-
+.search {
+  display: block;
+}

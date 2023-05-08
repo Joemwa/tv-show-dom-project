@@ -10,6 +10,10 @@ function makePageForEpisodes(episodeList) {
 
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
+let searchAndDropDown = document.createElement("input");
+searchAndDropDown.classList.add("search");
+rootElem.appendChild(searchAndDropDown);
+
   let moviesContainer = document.createElement("div");
   moviesContainer.classList.add("movies-container");
   rootElem.appendChild(moviesContainer);
