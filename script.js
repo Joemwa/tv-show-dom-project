@@ -10,9 +10,21 @@ function makePageForEpisodes(episodeList) {
 
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
+  
+// This is my search box
 let searchAndDropDown = document.createElement("input");
 searchAndDropDown.classList.add("search");
+searchAndDropDown.setAttribute("id", "search");
+document.getElementById("search").addEventListener("onsearch", searchResult);
 rootElem.appendChild(searchAndDropDown);
+
+
+// This is my function that will return the result of the search
+function searchResult () {
+  let typedWords = searchAndDropDown.value.toLowerCase();
+  let titleComparison = episode.name.toLowerCase();
+  let summaryComparison = episode.summary.toLowerCase();
+}
 
   let moviesContainer = document.createElement("div");
   moviesContainer.classList.add("movies-container");
@@ -71,3 +83,5 @@ rootElem.appendChild(searchAndDropDown);
 }
 
 window.onload = setup;
+
+
