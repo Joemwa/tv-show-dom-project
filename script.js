@@ -11,11 +11,13 @@ function makePageForEpisodes(episodeList) {
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
   // This is my search box
-  // let searchAndDropDown = document.createElement("input");
-  // searchAndDropDown.classList.add("search");
-  // searchAndDropDown.setAttribute("id", "search");
-  // document.getElementById("search").addEventListener("onsearch", searchResult);
-  // rootElem.appendChild(searchAndDropDown);
+  let searchAndDropDown = document.createElement("input");
+  searchAndDropDown.classList.add("search");
+  searchAndDropDown.setAttribute("id", "search");
+  rootElem.appendChild(searchAndDropDown);
+  document.getElementById("search").addEventListener("onsearch", searchResult);
+  searchAndDropDown.type = "text";
+  searchAndDropDown.placeholder = "Search episodes";
 
   // This is my function that will return the result of the search
   function searchResult() {
