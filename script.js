@@ -15,15 +15,28 @@ function makePageForEpisodes(episodeList) {
   searchAndDropDown.classList.add("search");
   searchAndDropDown.setAttribute("id", "search");
   rootElem.appendChild(searchAndDropDown);
-  document.getElementById("search").addEventListener("onsearch", searchResult);
+  document.getElementById("search").addEventListener("input", searchResult);
   searchAndDropDown.type = "text";
   searchAndDropDown.placeholder = "Search episodes";
 
   // This is my function that will return the result of the search
   function searchResult() {
+    let filteredEpisodes = [];
     let typedWords = searchAndDropDown.value.toLowerCase();
     let titleComparison = episode.name.toLowerCase();
     let summaryComparison = episode.summary.toLowerCase();
+
+    for (episode of episodeList) {
+      if (
+        titleComparison.includes(typedWords) ||
+        summaryComparison.includes(typedWords)
+      ) {
+        filteredEpisodes.push(episode);
+      }
+      // Clears the display
+      moviesContainer.innerHTML = "";
+      makePageForEpisodes(filteredEpisodes);
+    }
   }
 
   let moviesContainer = document.createElement("div");
