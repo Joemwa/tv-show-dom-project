@@ -65,7 +65,11 @@ body {
   
 }
 .search {
-  display: block;
+  display: flex;
   margin-left: 60px;
 }
 
+.selectTag {
+  display: flex;
+  margin-right: 60px;
+}

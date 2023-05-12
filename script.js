@@ -10,12 +10,30 @@ function makePageForEpisodes(episodeList) {
 
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
+  // The select input function
+  let selectTag = document.createElement("select");
+  selectTag.classList.add("select");
+  selectTag.setAttribute("id", "selectId");
+  rootElem.appendChild(selectTag);
+
+  // create options for the select tool
+  let optionElem = document.createElement("option");
+  selectTag.appendChild(optionElem);
+  // for (let i = 0; i < episodeList.length; i++) {
+  //   // let optionElem = document.createElement("option");
+  //   optionElem.text = `${episodeList[i].name} - S${episodeList[i].season}E${episodeList[i].number}`;
+  //   optionElem.value = i;
+  //   selectTag.add(optionElem);
+  //
+
   // This is my search box
   let searchAndDropDown = document.createElement("input");
   searchAndDropDown.classList.add("search");
-  searchAndDropDown.setAttribute("id", "search");
+  searchAndDropDown.setAttribute("id", "searchId");
   rootElem.appendChild(searchAndDropDown);
-  document.getElementById("search").addEventListener("input", searchResult);
+  document
+    .getElementById("searchId")
+    .addEventListener("onsearch", searchResult);
   searchAndDropDown.type = "text";
   searchAndDropDown.placeholder = "Search episodes";
 
@@ -23,20 +41,20 @@ function makePageForEpisodes(episodeList) {
   function searchResult() {
     let filteredEpisodes = [];
     let typedWords = searchAndDropDown.value.toLowerCase();
-    let titleComparison = episode.name.toLowerCase();
-    let summaryComparison = episode.summary.toLowerCase();
 
     for (episode of episodeList) {
+      let titleComparison = episode.name.toLowerCase();
+      let summaryComparison = episode.summary.toLowerCase();
       if (
         titleComparison.includes(typedWords) ||
         summaryComparison.includes(typedWords)
       ) {
         filteredEpisodes.push(episode);
       }
-      // Clears the display
-      moviesContainer.innerHTML = "";
-      makePageForEpisodes(filteredEpisodes);
     }
+    // Clears the display
+    moviesContainer.innerHTML = "";
+    makePageForEpisodes(filteredEpisodes);
   }
 
   let moviesContainer = document.createElement("div");
