@@ -17,14 +17,13 @@ function makePageForEpisodes(episodeList) {
   rootElem.appendChild(selectTag);
 
   // create options for the select tool
-  let optionElem = document.createElement("option");
-  selectTag.appendChild(optionElem);
-  // for (let i = 0; i < episodeList.length; i++) {
-  //   // let optionElem = document.createElement("option");
-  //   optionElem.text = `${episodeList[i].name} - S${episodeList[i].season}E${episodeList[i].number}`;
-  //   optionElem.value = i;
-  //   selectTag.add(optionElem);
-  //
+
+  for (let i = 0; i < episodeList.length; i++) {
+    let optionElem = document.createElement("option");
+    optionElem.text = `${episodeList[i].name} - S${episodeList[i].season}E${episodeList[i].number}`;
+    optionElem.value = i;
+    selectTag.appendChild(optionElem);
+  }
 
   // This is my search box
   let searchAndDropDown = document.createElement("input");

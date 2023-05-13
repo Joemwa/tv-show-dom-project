@@ -65,7 +65,7 @@ body {
   
 }
 .search {
-  display: flex;
+  display: block;
   margin-left: 60px;
 }
 
