@@ -1,22 +1,38 @@
 //You can edit ALL of the code here
-function setup() {
-  const allEpisodes = getAllEpisodes();
-  console.log(allEpisodes);
-  makePageForEpisodes(allEpisodes);
+ // This is my function that will return the result of the search
+ function searchResult() {
+  let filteredEpisodes = [];
+  let typedWords = searchInput.value.toLowerCase();
+
+  for (episode of episodeList) {
+    let titleComparison = episode.name.toLowerCase();
+    let summaryComparison = episode.summary.toLowerCase();
+    if (
+      titleComparison.includes(typedWords) ||
+      summaryComparison.includes(typedWords)
+    ) {
+      filteredEpisodes.push(episode);
+    }
+  }
+  // Clears the display
+  moviesContainer.innerHTML = "";
+  makePageForEpisodes(filteredEpisodes);
 }
 
-function makePageForEpisodes(episodeList) {
-  const rootElem = document.getElementById("root");
-
-  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-
-  // The select input function
-  let selectTag = document.createElement("select");
-  selectTag.classList.add("select");
-  selectTag.setAttribute("id", "selectId");
-  rootElem.appendChild(selectTag);
-
-  // create options for the select tool
+function createHeader (episodeList) {
+// The select input function
+    const rootElem = document.getElementById("root");
+    let headerContainer = document.createElement("div");
+    rootElem.appendChild(headerContainer);
+    let pElement = document.createElement("p");
+    pElement.innerText = "I need to appear";
+    headerContainer.appendChild(pElement);
+    console.log(headerContainer);
+    let selectTag = document.createElement("select");
+    selectTag.classList.add("select");
+    selectTag.setAttribute("id", "selectId");
+    headerContainer.appendChild(selectTag);
+    // create options for the select tool
 
   for (let i = 0; i < episodeList.length; i++) {
     let optionElem = document.createElement("option");
@@ -25,36 +41,35 @@ function makePageForEpisodes(episodeList) {
     selectTag.appendChild(optionElem);
   }
 
-  // This is my search box
-  let searchAndDropDown = document.createElement("input");
-  searchAndDropDown.classList.add("search");
-  searchAndDropDown.setAttribute("id", "searchId");
-  rootElem.appendChild(searchAndDropDown);
-  document
-    .getElementById("searchId")
-    .addEventListener("onsearch", searchResult);
-  searchAndDropDown.type = "text";
-  searchAndDropDown.placeholder = "Search episodes";
+    // This is my search box
+  let searchInput = document.createElement("input");
+  searchInput.classList.add("search");
+  searchInput.id = "searchId";
+  searchInput.type = "text";
+  searchInput.placeholder = "Search episodes";
+  headerContainer.appendChild(searchInput);
+  searchInput.addEventListener("input", searchResult);
+  
+}
+function setup() {
+  const allEpisodes = getAllEpisodes();
+  // console.log(allEpisodes);
+  createHeader (allEpisodes);
+  makePageForEpisodes(allEpisodes);
+}
 
-  // This is my function that will return the result of the search
-  function searchResult() {
-    let filteredEpisodes = [];
-    let typedWords = searchAndDropDown.value.toLowerCase();
+function makePageForEpisodes(episodeList) {
+  const rootElem = document.getElementById("root");
 
-    for (episode of episodeList) {
-      let titleComparison = episode.name.toLowerCase();
-      let summaryComparison = episode.summary.toLowerCase();
-      if (
-        titleComparison.includes(typedWords) ||
-        summaryComparison.includes(typedWords)
-      ) {
-        filteredEpisodes.push(episode);
-      }
-    }
-    // Clears the display
-    moviesContainer.innerHTML = "";
-    makePageForEpisodes(filteredEpisodes);
-  }
+  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+
+  
+
+  
+
+  
+
+ 
 
   let moviesContainer = document.createElement("div");
   moviesContainer.classList.add("movies-container");
