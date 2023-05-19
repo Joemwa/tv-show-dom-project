@@ -1,6 +1,6 @@
 //You can edit ALL of the code here
- // This is my function that will return the result of the search
- function searchResult() {
+// This is my function that will return the result of the search
+function searchResult() {
   let filteredEpisodes = [];
   let typedWords = searchInput.value.toLowerCase();
 
@@ -19,20 +19,20 @@
   makePageForEpisodes(filteredEpisodes);
 }
 
-function createHeader (episodeList) {
-// The select input function
-    const rootElem = document.getElementById("root");
-    let headerContainer = document.createElement("div");
-    rootElem.appendChild(headerContainer);
-    let pElement = document.createElement("p");
-    pElement.innerText = "I need to appear";
-    headerContainer.appendChild(pElement);
-    console.log(headerContainer);
-    let selectTag = document.createElement("select");
-    selectTag.classList.add("select");
-    selectTag.setAttribute("id", "selectId");
-    headerContainer.appendChild(selectTag);
-    // create options for the select tool
+function createHeader(episodeList) {
+  // The select input function
+  const rootElem = document.getElementById("main");
+  let headerContainer = document.createElement("div");
+  rootElem.appendChild(headerContainer);
+  // let pElement = document.createElement("p");
+  // pElement.innerText = "I need to appear";
+  // headerContainer.appendChild(pElement);
+  console.log(headerContainer);
+  let selectTag = document.createElement("select");
+  selectTag.classList.add("select");
+  selectTag.setAttribute("id", "selectId");
+  headerContainer.appendChild(selectTag);
+  // create options for the select tool
 
   for (let i = 0; i < episodeList.length; i++) {
     let optionElem = document.createElement("option");
@@ -41,7 +41,7 @@ function createHeader (episodeList) {
     selectTag.appendChild(optionElem);
   }
 
-    // This is my search box
+  // This is my search box
   let searchInput = document.createElement("input");
   searchInput.classList.add("search");
   searchInput.id = "searchId";
@@ -49,12 +49,12 @@ function createHeader (episodeList) {
   searchInput.placeholder = "Search episodes";
   headerContainer.appendChild(searchInput);
   searchInput.addEventListener("input", searchResult);
-  
+
 }
 function setup() {
   const allEpisodes = getAllEpisodes();
   // console.log(allEpisodes);
-  createHeader (allEpisodes);
+  createHeader(allEpisodes);
   makePageForEpisodes(allEpisodes);
 }
 
@@ -63,13 +63,13 @@ function makePageForEpisodes(episodeList) {
 
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
-  
 
-  
 
-  
 
- 
+
+
+
+
 
   let moviesContainer = document.createElement("div");
   moviesContainer.classList.add("movies-container");
