@@ -1,29 +1,12 @@
 //You can edit ALL of the code here
 // This is my function that will return the result of the search
-function searchResult() {
-  let filteredEpisodes = [];
-  let typedWords = searchInput.value.toLowerCase();
-
-  for (episode of episodeList) {
-    let titleComparison = episode.name.toLowerCase();
-    let summaryComparison = episode.summary.toLowerCase();
-    if (
-      titleComparison.includes(typedWords) ||
-      summaryComparison.includes(typedWords)
-    ) {
-      filteredEpisodes.push(episode);
-    }
-  }
-  // Clears the display
-  moviesContainer.innerHTML = "";
-  makePageForEpisodes(filteredEpisodes);
-}
+function searchResult() {}
 
 function createHeader(episodeList) {
   // The select input function
-  const rootElem = document.getElementById("main");
+  const mainElem = document.getElementById("main");
   let headerContainer = document.createElement("div");
-  rootElem.appendChild(headerContainer);
+  mainElem.appendChild(headerContainer);
   // let pElement = document.createElement("p");
   // pElement.innerText = "I need to appear";
   // headerContainer.appendChild(pElement);
@@ -48,8 +31,25 @@ function createHeader(episodeList) {
   searchInput.type = "text";
   searchInput.placeholder = "Search episodes";
   headerContainer.appendChild(searchInput);
-  searchInput.addEventListener("input", searchResult);
+  searchInput.addEventListener("input", function () {
+    let filteredEpisodes = [];
+    moviesContainer = document.getElementById("movie-div-id");
+    let typedWords = searchInput.value.toLowerCase();
 
+    for (episode of episodeList) {
+      let titleComparison = episode.name.toLowerCase();
+      let summaryComparison = episode.summary.toLowerCase();
+      if (
+        titleComparison.includes(typedWords) ||
+        summaryComparison.includes(typedWords)
+      ) {
+        filteredEpisodes.push(episode);
+      }
+    }
+    // Clears the display
+    moviesContainer.innerHTML = "";
+    makePageForEpisodes(filteredEpisodes);
+  });
 }
 function setup() {
   const allEpisodes = getAllEpisodes();
@@ -63,16 +63,9 @@ function makePageForEpisodes(episodeList) {
 
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
-
-
-
-
-
-
-
-
   let moviesContainer = document.createElement("div");
   moviesContainer.classList.add("movies-container");
+  moviesContainer.id = "movie-div-id";
   rootElem.appendChild(moviesContainer);
 
   for (episode in episodeList) {
