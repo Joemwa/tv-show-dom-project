@@ -115,7 +115,7 @@ function makePageForEpisodes(episodeList) {
     let summaryP = document.createElement("p");
     summaryP.classList.add("summary-p");
     movieCard.appendChild(summaryP);
-    summaryP.innerText = episodeList[episode].summary;
+    summaryP.innerHTML = episodeList[episode].summary;
   }
   // console.log(episodeList);
 }
