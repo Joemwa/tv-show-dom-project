@@ -69,7 +69,7 @@ function makePageForEpisodes(episodeList) {
   rootElem.appendChild(moviesContainer);
 
   for (episode in episodeList) {
-    console.log(episodeList[episode].name);
+    // console.log(episodeList[episode].name);
 
     let topContainer = document.createElement("div");
     topContainer.classList.add("top-container");
