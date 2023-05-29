@@ -6,22 +6,43 @@ function createHeader(episodeList) {
   // The select input function
   const mainElem = document.getElementById("main");
   let headerContainer = document.createElement("div");
+  headerContainer.classList.add("head-container");
   mainElem.appendChild(headerContainer);
   // let pElement = document.createElement("p");
   // pElement.innerText = "I need to appear";
   // headerContainer.appendChild(pElement);
-  console.log(headerContainer);
-  let selectTag = document.createElement("select");
-  selectTag.classList.add("select");
-  selectTag.setAttribute("id", "selectId");
-  headerContainer.appendChild(selectTag);
-  // create options for the select tool
+  // console.log(headerContainer);
+
+
+  // Creating the select episode element
+  let selectEpisode = document.createElement("select");
+  selectEpisode.classList.add("select");
+  selectEpisode.setAttribute("id", "selectId");
+  headerContainer.appendChild(selectEpisode);
+
+  // Create the select show element 
+  let selectShow = document.createElement("select");
+  selectShow.classList.add("select");
+  selectShow.setAttribute("id", "selectShowID");
+  headerContainer.appendChild(selectShow);
+
+  // creating options for the shows tool
+for (let i = 0; i < getAllShows.length; i++) {
+  let showsOptionElement = document.createElement("option");
+  showsOptionElement.text = `${getAllShows[i].name}`;
+  showsOptionElement.value = i;
+  selectShow.appendChild(showsOptionElement);
+}
+  
+
+
+  // create options for the select episode tool
 
   for (let i = 0; i < episodeList.length; i++) {
-    let optionElem = document.createElement("option");
-    optionElem.text = `${episodeList[i].name} - S${episodeList[i].season}E${episodeList[i].number}`;
-    optionElem.value = i;
-    selectTag.appendChild(optionElem);
+    let EpisodeOptionElement = document.createElement("option");
+    EpisodeOptionElement.text = `${episodeList[i].name} - S${episodeList[i].season}E${episodeList[i].number}`;
+    EpisodeOptionElement.value = i;
+    selectEpisode.appendChild(EpisodeOptionElement);
   }
 
   // This is my search box
@@ -119,5 +140,15 @@ function makePageForEpisodes(episodeList) {
   }
   // console.log(episodeList);
 }
+let tvShowCode = 543;
+let episodeAPI = `https://api.tvmaze.com/shows/${tvShowCode}/episodes`;
+async function fetchEpisodesJSON() {
+  const response = await fetch(episodeAPI);
+  const episodes = await response.json();
+  return episodes;
+}
 
+fetchEpisodesJSON().then((episodes) => {
+  console.log(episodes); // fetched movies
+});
 window.onload = setup;

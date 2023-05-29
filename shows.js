@@ -2,17 +2,7 @@
 
 //This content is from https://www.tvmaze.com/
 //specifically: https://api.tvmaze.com/shows
-let tvShowCode = 1500;
-let episodeAPI = `https://api.tvmaze.com/shows/${tvShowCode}/episodes`;
-async function fetchEpisodesJSON() {
-  const response = await fetch(episodeAPI);
-  const episodes = await response.json();
-  return episodes;
-}
 
-fetchEpisodesJSON().then((episodes) => {
-  console.log(episodes); // fetched movies
-});
 
 function getOneShow() {
   return {
