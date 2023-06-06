@@ -15,11 +15,12 @@ function createHeader(episodeList) {
   // headerContainer.appendChild(pElement);
   // console.log(headerContainer);
   function populateShowList() {
-    let dropdown = document.getElementById("showList");
+    let dropdown = document.getElementById("select");
 
     fetch("https://api.tvmaze.com/shows")
       .then(response => response.json())
       .then(data => {
+        // console.log(data);
         data.forEach(show => {
           let option = document.createElement("option");
           option.text = show.name;
@@ -29,7 +30,7 @@ function createHeader(episodeList) {
       })
       .catch(error => console.error(error));
   }
-  
+  // document.getElementById("select").addEventListener("change", populateShowList);
   
   function displaySelectedShow() {
     let selectedShowId = document.getElementById("showList").value;
@@ -78,6 +79,7 @@ function createHeader(episodeList) {
   let defaultOption = document.createElement("option");
   defaultOption.text = "Select a show";
   defaultOption.value = "";
+  // defaultOption.addEventListener(onchange, )
 selectShow.appendChild(defaultOption);
 
   headerContainer.appendChild(selectShow);
