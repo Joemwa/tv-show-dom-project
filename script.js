@@ -9,37 +9,33 @@ function createHeader(episodeList) {
   headerContainer.classList.add("head-container");
   mainElem.appendChild(headerContainer);
 
-  // fetch("https://api.tvmaze.com/shows").then(res.json()).then(data => console.log(data));
-  // let pElement = document.createElement("p");
-  // pElement.innerText = "I need to appear";
-  // headerContainer.appendChild(pElement);
-  // console.log(headerContainer);
+  //This function fetches all shows and lists them in a dropdown
   function populateShowList() {
-    let dropdown = document.getElementById("select");
+    let dropdown = document.getElementById("selectShowID");
 
     fetch("https://api.tvmaze.com/shows")
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         // console.log(data);
-        data.forEach(show => {
+        data.forEach((show) => {
           let option = document.createElement("option");
           option.text = show.name;
           option.value = show.id;
           dropdown.appendChild(option);
         });
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   }
   // document.getElementById("select").addEventListener("change", populateShowList);
-  
+
   function displaySelectedShow() {
     let selectedShowId = document.getElementById("showList").value;
     let showDetailsContainer = document.getElementById("showDetails");
 
     if (selectedShowId !== "") {
       fetch("https://api.tvmaze.com/shows/" + selectedShowId)
-        .then(response => response.json())
-        .then(show => {
+        .then((response) => response.json())
+        .then((show) => {
           // Clear previous show details
           showDetailsContainer.innerHTML = "";
 
@@ -54,7 +50,7 @@ function createHeader(episodeList) {
           showDetailsContainer.appendChild(heading);
           showDetailsContainer.appendChild(summary);
         })
-        .catch(error => console.error(error));
+        .catch((error) => console.error(error));
     } else {
       // Clear show details if no show is selected
       showDetailsContainer.innerHTML = "";
@@ -62,7 +58,7 @@ function createHeader(episodeList) {
   }
 
   // Call the populateShowList function to fetch shows and populate the dropdown
-  populateShowList();
+  
 
   // Creating the select episode element
   let selectEpisode = document.createElement("select");
@@ -70,7 +66,7 @@ function createHeader(episodeList) {
   selectEpisode.setAttribute("id", "selectId");
   headerContainer.appendChild(selectEpisode);
 
-  // Create the select show element 
+  // Create the select show element
   let selectShow = document.createElement("select");
   selectShow.classList.add("select");
   selectShow.setAttribute("id", "selectShowID");
@@ -80,19 +76,17 @@ function createHeader(episodeList) {
   defaultOption.text = "Select a show";
   defaultOption.value = "";
   // defaultOption.addEventListener(onchange, )
-selectShow.appendChild(defaultOption);
+  selectShow.appendChild(defaultOption);
 
   headerContainer.appendChild(selectShow);
-
+  populateShowList();
   // creating options for the shows tool
-for (let i = 0; i < getAllShows.length; i++) {
-  let showsOptionElement = document.createElement("option");
-  showsOptionElement.text = `${getAllShows[i].name}`;
-  showsOptionElement.value = i;
-  selectShow.appendChild(showsOptionElement);
-}
-  
-
+  for (let i = 0; i < getAllShows.length; i++) {
+    let showsOptionElement = document.createElement("option");
+    showsOptionElement.text = `${getAllShows[i].name}`;
+    showsOptionElement.value = i;
+    selectShow.appendChild(showsOptionElement);
+  }
 
   // create options for the select episode tool
 
