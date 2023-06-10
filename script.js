@@ -56,8 +56,6 @@ function createHeader(episodeList) {
       showDetailsContainer.innerHTML = "";
     }
   }
-
-  // Call the populateShowList function to fetch shows and populate the dropdown
   
 
   // Creating the select episode element
@@ -192,15 +190,5 @@ function makePageForEpisodes(episodeList) {
   }
   // console.log(episodeList);
 }
-// let tvShowCode = 543;
-// let episodeAPI = `https://api.tvmaze.com/shows/${tvShowCode}/episodes`;
-// async function fetchEpisodesJSON() {
-//   const response = await fetch(episodeAPI);
-//   const episodes = await response.json();
-//   return episodes;
-// }
 
-// fetchEpisodesJSON().then((episodes) => {
-//   console.log(episodes); // fetched movies
-// });
 window.onload = setup;
