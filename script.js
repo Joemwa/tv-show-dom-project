@@ -12,6 +12,10 @@ function createHeader(episodeList) {
   //This function fetches all shows and lists them in a dropdown
   function populateShowList() {
     let dropdown = document.getElementById("selectShowID");
+    console.log("hello");
+    dropdown.addEventListener("onchange", (event) => {
+      console.log(event);
+    });
 
     fetch("https://api.tvmaze.com/shows")
       .then((response) => response.json())
@@ -26,29 +30,33 @@ function createHeader(episodeList) {
       })
       .catch((error) => console.error(error));
   }
-  // document.getElementById("select").addEventListener("change", populateShowList);
 
-  function displaySelectedShow() {
-    let selectedShowId = document.getElementById("showList").value;
+  function displaySelectedShow(event) {
+    let selectedShowId = event.target.value;
+    console.log({
+      selectedShowId,
+    });
     let showDetailsContainer = document.getElementById("showDetails");
+    console.log(event);
 
     if (selectedShowId !== "") {
-      fetch("https://api.tvmaze.com/shows/" + selectedShowId)
+      fetch("https://api.tvmaze.com/shows/" + selectedShowId + "/episodes")
         .then((response) => response.json())
-        .then((show) => {
-          // Clear previous show details
-          showDetailsContainer.innerHTML = "";
+        .then((episodes) => {
+          makePageForEpisodes(episodes);
+          // // Clear previous show details
+          // showDetailsContainer.innerHTML = "";
 
-          // Create elements to display show details
-          let heading = document.createElement("h2");
-          heading.textContent = show.name;
+          // // Create elements to display show details
+          // let heading = document.createElement("h2");
+          // heading.textContent = show.name;
 
-          let summary = document.createElement("p");
-          summary.innerHTML = show.summary;
+          // let summary = document.createElement("p");
+          // summary.innerHTML = show.summary;
 
-          // Append show details to the container
-          showDetailsContainer.appendChild(heading);
-          showDetailsContainer.appendChild(summary);
+          // // Append show details to the container
+          // showDetailsContainer.appendChild(heading);
+          // showDetailsContainer.appendChild(summary);
         })
         .catch((error) => console.error(error));
     } else {
@@ -56,7 +64,6 @@ function createHeader(episodeList) {
       showDetailsContainer.innerHTML = "";
     }
   }
-  
 
   // Creating the select episode element
   let selectEpisode = document.createElement("select");
